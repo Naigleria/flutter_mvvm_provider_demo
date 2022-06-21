@@ -30,7 +30,12 @@ class Movie {
   }
 
   String get backdropPath {
-    return 'https://image.tmdb.org/t/p/w500'+this.LocalBackdropPath;
+    if(this.LocalBackdropPath==null){
+      return  null;
+    }else{
+      return 'https://image.tmdb.org/t/p/w500'+this.LocalBackdropPath;
+    }
+
   }
 
   String get title {
@@ -42,7 +47,11 @@ class Movie {
   }
 
   String get posterPath {
-    return 'https://image.tmdb.org/t/p/w500'+this.LocalPosterPath;
+    if(this.LocalPosterPath==null){
+      return  null;
+    }else{
+      return 'https://image.tmdb.org/t/p/w500'+this.LocalPosterPath;
+    }
   }
 
   String get releaseDate {
