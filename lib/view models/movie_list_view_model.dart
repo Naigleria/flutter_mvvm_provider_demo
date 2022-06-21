@@ -1,15 +1,39 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/models/movie.dart';
+import 'package:flutterapp/pages/movie_list_page.dart';
 import 'package:flutterapp/services/webservice.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class MovieListViewModel extends ChangeNotifier {
 
   List<Movie> movies = <Movie>[];
+  int pageCount=0;
+  bool isLoading=true;
+  bool isSearching=false;
+  int currentPage=1;
 
-  Future<void> fetchMovies() async {
-    final results =  await Webservice().fetchMovies();
-    this.movies = results.map((item) => Movie(
+
+  void initLoading(){
+    isLoading=true;
+    notifyListeners();
+  }
+  void revertSearch(){
+    isSearching=!isSearching;
+    notifyListeners();
+  }
+
+  Future<void> fetchObjects(bool search, String query, int index, ) async {
+
+    final data = search?
+      await Webservice().fetchObjects(true,query,index):
+      await Webservice().fetchObjects(false,query,index);
+
+    this.pageCount=data["total_pages"];
+    this.currentPage=index+1;
+    final Iterable json = data["results"];
+    this.movies=json.map((movie) => Movie.fromJson(movie)).toList();
+    this.movies = this.movies.map((item) => Movie(
       LocalAdult: item.adult,
       LocalBackdropPath: item.backdropPath,
       LocalTitle: item.title,
@@ -20,8 +44,10 @@ class MovieListViewModel extends ChangeNotifier {
       LocalRating: item.rating,
     )).toList();
 
-    print(this.movies);
+    isLoading=false;
     notifyListeners();
+
+
   }
 
   void LaunchGeneralDialogMovieDetails(BuildContext context, Movie movie){
@@ -138,3 +164,4 @@ class MovieListViewModel extends ChangeNotifier {
   }
 
 }
+
