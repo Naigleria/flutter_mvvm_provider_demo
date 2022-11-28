@@ -10,7 +10,7 @@ class Movie {
   final num LocalRating;
 
 
-  Movie({this.LocalAdult, this.LocalBackdropPath, this.LocalTitle, this.LocalOverview, this.LocalPosterPath, this.LocalReleaseDate, this.LocalPopularity, this.LocalRating});
+  Movie({required this.LocalAdult, required this.LocalBackdropPath, required this.LocalTitle, required this.LocalOverview, required this.LocalPosterPath, required this.LocalReleaseDate, required this.LocalPopularity, required this.LocalRating});
 
   factory Movie.fromJson(Map<String, dynamic> json) {
     return Movie(
@@ -31,7 +31,7 @@ class Movie {
 
   String get backdropPath {
     if(this.LocalBackdropPath==null){
-      return  null;
+      return  "";
     }else{
       return 'https://image.tmdb.org/t/p/w500'+this.LocalBackdropPath;
     }
@@ -48,7 +48,7 @@ class Movie {
 
   String get posterPath {
     if(this.LocalPosterPath==null){
-      return  null;
+      return  "";
     }else{
       return 'https://image.tmdb.org/t/p/w500'+this.LocalPosterPath;
     }

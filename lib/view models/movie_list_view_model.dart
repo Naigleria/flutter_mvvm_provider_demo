@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/models/movie.dart';
-import 'package:flutterapp/pages/movie_list_page.dart';
+import 'package:flutterapp/screens/movie_list_screen.dart';
 import 'package:flutterapp/services/webservice.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
@@ -76,12 +76,13 @@ class MovieListViewModel extends ChangeNotifier {
                 child: Column(
                   children: [
                     Container(
-                      decoration: BoxDecoration(
+                      decoration: movie.posterPath!=""?
+                      BoxDecoration(
                         image: DecorationImage(
                           fit: BoxFit.cover,
                           image: NetworkImage(movie.posterPath)
                         ),
-                      ),
+                      ):null,
                       height: MediaQuery.of(context).size.height*0.33,
                     ),
                     Row(

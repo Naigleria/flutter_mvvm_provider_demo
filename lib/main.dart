@@ -1,11 +1,23 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterapp/firebase_options.dart';
 import 'package:flutterapp/providers/generalAppInfo.dart';
+import 'package:flutterapp/screens/login_email_password_screen.dart';
+import 'package:flutterapp/screens/login_screen.dart';
+import 'package:flutterapp/screens/movie_list_screen.dart';
+import 'package:flutterapp/screens/phone_screen.dart';
+import 'package:flutterapp/screens/signup_email_password_screen.dart';
 import 'package:flutterapp/view%20models/movie_list_view_model.dart';
 import 'package:provider/provider.dart';
 
-import 'pages/movie_list_page.dart';
 
-void main() => runApp(App());
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(App());
+}
 
 class App extends StatelessWidget {
 
@@ -22,8 +34,14 @@ class App extends StatelessWidget {
         home:
         ChangeNotifierProvider(
           create: (context) => MovieListViewModel(),
-          child: MovieListPage(),
-        )
+          child: LoginScreen(),
+
+        ),
+        routes: {
+          EmailPasswordSignup.routeName: (context) => EmailPasswordSignup(),
+          EmailPasswordLogin.routeName:(context) => EmailPasswordLogin(),
+          PhoneScreen.routeName:(context) => PhoneScreen(),
+        },
       ),
     );
   }

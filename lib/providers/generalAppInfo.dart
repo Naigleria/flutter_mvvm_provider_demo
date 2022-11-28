@@ -4,7 +4,7 @@ class GeneralAppInfo with ChangeNotifier{
 
   String _catalogMovie='Catálogo de películas';
 
-  get catalogMovie{
+  String get catalogMovie{
     return _catalogMovie;
   }
 

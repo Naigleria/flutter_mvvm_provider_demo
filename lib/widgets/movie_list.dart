@@ -7,7 +7,7 @@ class MovieList extends StatelessWidget {
 
    List<Movie> movies;
    MovieListViewModel vm;
-  MovieList({this.movies,  this.vm});
+  MovieList({required this.movies,  required this.vm});
 
 
 
@@ -22,7 +22,7 @@ class MovieList extends StatelessWidget {
         return ListTile(
           contentPadding: EdgeInsets.all(10),
           leading: Container(
-            decoration:movie.backdropPath!=null?
+            decoration:movie.backdropPath!=""?
             BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.cover,
