@@ -9,12 +9,12 @@ import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 
-class MovieListPage extends StatefulWidget {
+class MovieListScreen extends StatefulWidget {
   @override
-  _MovieListPageState createState() => _MovieListPageState();
+  _MovieListScreenState createState() => _MovieListScreenState();
 }
 
-class _MovieListPageState extends State<MovieListPage> {
+class _MovieListScreenState extends State<MovieListScreen> {
 
   final TextEditingController _controller = TextEditingController();
 

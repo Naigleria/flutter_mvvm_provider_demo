@@ -6,7 +6,7 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class Webservice {
 
-  Future<dynamic> fetchObjects(bool search, String query, int index, [ItemScrollController itemScrollController]) async {
+  Future<dynamic> fetchObjects(bool search, String query, int index, [ItemScrollController? itemScrollController]) async {
 
     //final url = "http://www.omdbapi.com/?s=$keyword&apikey=YOURAPIKEY";
 
